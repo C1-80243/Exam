@@ -1,20 +1,20 @@
-ipeline {
+pipeline {
     agent any
 
     stages {
         stage ('docker login') {
             steps {
-                sh 'echo dckr_pat_HuaCr3SLfaHxRrIB8bkYEuNF00M | /usr/local/bin/docker login -u amitr999 --password-stdin'
+                sh 'echo dckr_pat_9ql4QDkQbwel79Dm2YQ1XvDDyiI | /usr/local/bin/docker login -u gaurav831 --password-stdin'
             }
         }
         stage ('docker build image') {
             steps {
-                sh '/usr/local/bin/docker build -t amitr999/myservice .'
+                sh '/usr/local/bin/docker build -t gaurav831/myservice .'
             }
         }
         stage ('docker push image') {
             steps {
-                sh '/usr/local/bin/docker image push amitr999/myservice'
+                sh '/usr/local/bin/docker image push gaurav831/myservice'
             }
         }
         stage ('docker remove service') {
@@ -24,7 +24,7 @@ ipeline {
         }
         stage ('docker create service') {
             steps {
-                sh '/usr/local/bin/docker service create --name myservice --replicas 5 -p 9876:80 amitr999/mywebsite'
+                sh '/usr/local/bin/docker service create --name myservice --replicas 5 -p 9876:80 gaurav831/mywebsite'
             }
         }
     }
